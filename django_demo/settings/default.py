@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
 
     # My apps
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -92,6 +93,8 @@ USE_L10N = True
 USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'accounts.User'
 
 LOGGING = {
     'version': 1,
