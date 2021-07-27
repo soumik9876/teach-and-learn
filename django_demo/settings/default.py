@@ -26,11 +26,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 3rd party apps
+    'debug_toolbar',
 
     # My apps
 ]
 
 MIDDLEWARE = [
+    # DebugToolbarMiddleware should be included as early as possible in the list. However,
+    # it must come after any other middleware that encodes the response’s content, such as GZipMiddleware.
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
