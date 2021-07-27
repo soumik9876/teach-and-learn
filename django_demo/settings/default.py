@@ -27,6 +27,8 @@ INSTALLED_APPS = [
 
     # 3rd party apps
     'debug_toolbar',
+    'rest_framework',
+    'django_filters',
 
     # My apps
     'core',
@@ -96,6 +98,24 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+# DRF configs
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+    'DEFAULT_FILTER_BACKENDS': [
+        'rest_framework.filters.SearchFilter',
+        'core.api.filters.OrderingFilter',
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ]
+}
 
 LOGGING = {
     'version': 1,
