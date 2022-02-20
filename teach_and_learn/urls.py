@@ -2,7 +2,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from django_demo.settings import env, MEDIA_ROOT, MEDIA_URL, STATIC_ROOT, STATIC_URL
+from teach_and_learn.settings import env, MEDIA_ROOT, MEDIA_URL, STATIC_ROOT, STATIC_URL
 
 urlpatterns = [
     path('admin/', admin.site.urls),

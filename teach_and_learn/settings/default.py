@@ -51,7 +51,7 @@ MIDDLEWARE = [
     # My middlewares
 ]
 
-ROOT_URLCONF = 'django_demo.urls'
+ROOT_URLCONF = 'teach_and_learn.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'django_demo.wsgi.application'
+WSGI_APPLICATION = 'teach_and_learn.wsgi.application'
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
