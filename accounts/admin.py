@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Permission
 from django.utils.translation import gettext_lazy as _
 
-from accounts.models import User
+from accounts.models import User, Teacher, Student
 
 
 @admin.register(User)
@@ -21,3 +21,13 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(Permission)
+
+
+@admin.register(Teacher)
+class TeacherAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+    pass
