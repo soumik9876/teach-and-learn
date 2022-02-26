@@ -28,8 +28,8 @@ class Course(BaseModel):
     title = models.CharField(max_length=255, verbose_name=_("Course title"), unique=True)
     description = models.TextField(verbose_name=_("Course description"), blank=True)
     price = models.FloatField(verbose_name=_("Course price"), default=0)
-    teacher = models.ManyToManyField(Teacher, verbose_name=_("Course teachers"), null=True, blank=True)
-    student = models.ManyToManyField(Student, verbose_name=_("Enrolled students"), null=True, blank=True)
+    teacher = models.ManyToManyField(Teacher, verbose_name=_("Course teachers"))
+    student = models.ManyToManyField(Student, verbose_name=_("Enrolled students"))
     category = models.ForeignKey(CourseCategory, verbose_name=_("Course category"), on_delete=models.SET_NULL,
                                  null=True)
 
@@ -43,7 +43,7 @@ class Course(BaseModel):
 
 class Video(BaseModel):
     title = models.CharField(max_length=255, verbose_name=_("Video title"))
-    watched_by = models.ManyToManyField(Student, verbose_name="Watched by", null=True, blank=True)
+    watched_by = models.ManyToManyField(Student, verbose_name="Watched by")
     content_creator = models.ManyToManyField(Teacher, verbose_name=_("Content creators"))
     course = models.ForeignKey(Course, verbose_name=_("Course"), on_delete=models.CASCADE)
     video_file = models.FileField(upload_to=rename_and_save, null=True, blank=True)

@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     # My apps
     'core',
     'accounts',
-    'course'
+    'course',
+    'quiz'
 ]
 
 MIDDLEWARE = [
