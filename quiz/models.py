@@ -21,7 +21,7 @@ class Quiz(BaseModel):
 
 class Question(BaseModel):
     question = models.TextField(verbose_name=_("Question"))
-    quiz = models.ManyToManyField(Course, verbose_name=_("Quiz"))
+    quiz = models.ManyToManyField(Quiz, verbose_name=_("Quiz"), blank=True)
 
     class Meta:
         verbose_name = _("Question")

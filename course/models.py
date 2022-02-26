@@ -29,21 +29,21 @@ class Course(BaseModel):
     description = models.TextField(verbose_name=_("Course description"), blank=True)
     price = models.FloatField(verbose_name=_("Course price"), default=0)
     teacher = models.ManyToManyField(Teacher, verbose_name=_("Course teachers"))
-    student = models.ManyToManyField(Student, verbose_name=_("Enrolled students"))
+    student = models.ManyToManyField(Student, verbose_name=_("Enrolled students"), blank=True)
     category = models.ForeignKey(CourseCategory, verbose_name=_("Course category"), on_delete=models.SET_NULL,
-                                 null=True)
+                                 null=True, blank=True)
 
     class Meta:
         verbose_name = _("Course")
         verbose_name_plural = _("Courses")
 
     def __str__(self):
-        return f"{self.title}-{self.price}"
+        return f"{self.title}"
 
 
 class Video(BaseModel):
     title = models.CharField(max_length=255, verbose_name=_("Video title"))
-    watched_by = models.ManyToManyField(Student, verbose_name="Watched by")
+    watched_by = models.ManyToManyField(Student, verbose_name="Watched by", blank=True)
     content_creator = models.ManyToManyField(Teacher, verbose_name=_("Content creators"))
     course = models.ForeignKey(Course, verbose_name=_("Course"), on_delete=models.CASCADE)
     video_file = models.FileField(upload_to=rename_and_save, null=True, blank=True)
@@ -72,9 +72,9 @@ class Blog(BaseModel):
 
 class Comment(BaseModel):
     content = models.TextField(verbose_name=_("Comment content"))
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    video = models.ForeignKey(Video, on_delete=models.SET_NULL, null=True)
-    blog = models.ForeignKey(Blog, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    video = models.ForeignKey(Video, on_delete=models.SET_NULL, null=True, blank=True)
+    blog = models.ForeignKey(Blog, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         verbose_name = _("Comment")
