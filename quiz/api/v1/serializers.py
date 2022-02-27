@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 from accounts.api.v1.serializers import TeacherSerializer
-from quiz.models import Quiz, Question, Option
+from quiz.models import Quiz, Question, Option, QuizResult
 
 
 class QuizSerializer(ModelSerializer):
@@ -29,3 +29,11 @@ class QuestionSerializer(ModelSerializer):
     def get_options(self, obj):
         data = OptionSerializer(obj.option_set.all(), many=True).data
         return data
+
+
+class QuizResultSerializer(ModelSerializer):
+    total_marks = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = QuizResult
+        fields = "__all__"

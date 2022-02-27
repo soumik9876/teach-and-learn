@@ -1,7 +1,7 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
-from quiz.api.v1.serializers import QuizSerializer, QuestionSerializer
-from quiz.models import Quiz, Question
+from quiz.api.v1.serializers import QuizSerializer, QuestionSerializer, OptionSerializer, QuizResultSerializer
+from quiz.models import Quiz, Question, Option, QuizResult
 
 
 class QuizListCreateAPIView(ListCreateAPIView):
@@ -26,4 +26,23 @@ class QuestionRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
 
+class OptionListCreateAPIView(ListCreateAPIView):
+    serializer_class = OptionSerializer
+    queryset = Option.objects.all()
 
+
+class OptionRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    serializer_class = OptionSerializer
+    queryset = Option.objects.all()
+    lookup_field = "id"
+
+
+class QuizResultListCreateAPIView(ListCreateAPIView):
+    serializer_class = QuizResultSerializer
+    queryset = QuizResult.objects.all()
+
+
+class QuizResultRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    serializer_class = QuizResultSerializer
+    queryset = QuizResult.objects.all()
+    lookup_field = "id"
