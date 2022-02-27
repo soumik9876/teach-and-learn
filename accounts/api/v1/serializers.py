@@ -8,8 +8,9 @@ from django.http import HttpRequest
 from django.utils import timezone
 from django.utils.translation import gettext as _
 from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
 
-from accounts.models import User
+from accounts.models import User, Teacher
 
 
 class GoogleLoginSerializer(serializers.Serializer):
@@ -140,3 +141,11 @@ class UserSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         return validated_data
+
+
+class TeacherSerializer(ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = Teacher
+        fields = "__all__"

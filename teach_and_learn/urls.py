@@ -6,7 +6,8 @@ from teach_and_learn.settings import env, MEDIA_ROOT, MEDIA_URL, STATIC_ROOT, ST
 
 api_url_patterns = ([
     path("accounts/v1/", include("accounts.api.v1.urls")),
-    path("course/v1/",include("course.api.v1.urls"))
+    path("course/v1/", include("course.api.v1.urls")),
+    path("quiz/v1/", include("quiz.api.v1.urls"))
 ])
 
 urlpatterns = [
