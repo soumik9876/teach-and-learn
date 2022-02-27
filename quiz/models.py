@@ -28,7 +28,7 @@ class Question(BaseModel):
         verbose_name_plural = _("Questions")
 
     def __str__(self):
-        return f"{self.question} - {self.quiz.title}"
+        return f"{self.question}"
 
 
 class Option(BaseModel):

@@ -20,7 +20,7 @@ class User(AbstractUser):
 
 class Teacher(BaseModel):
     user = models.OneToOneField(User, verbose_name=_("User"), on_delete=models.CASCADE)
-    specialized_in = models.ManyToManyField("course.CourseCategory", verbose_name=_("Expertise in"), null=True,
+    specialized_in = models.ManyToManyField("course.CourseCategory", verbose_name=_("Expertise in"),
                                             blank=True)
 
     class Meta:

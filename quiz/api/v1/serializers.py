@@ -1,7 +1,8 @@
+from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 from accounts.api.v1.serializers import TeacherSerializer
-from quiz.models import Quiz, Question
+from quiz.models import Quiz, Question, Option
 
 
 class QuizSerializer(ModelSerializer):
@@ -12,7 +13,19 @@ class QuizSerializer(ModelSerializer):
         fields = "__all__"
 
 
+class OptionSerializer(ModelSerializer):
+    class Meta:
+        model = Option
+        exclude = ['created_date', 'modified_date']
+
+
 class QuestionSerializer(ModelSerializer):
+    options = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Question
-        fields = "__all__"
+        exclude = ['created_date', 'modified_date']
+
+    def get_options(self, obj):
+        data = OptionSerializer(obj.option_set.all(), many=True).data
+        return data
