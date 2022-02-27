@@ -1,14 +1,18 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
-from course.api.v1.serializers import CourseSerializer, CourseCategorySerializer, VideoSerializer, BlogSerializer
-from course.models import Course, CourseCategory, Video, Blog
+from course.api.v1.serializers import CourseSerializer, CourseCategorySerializer, VideoSerializer, BlogSerializer, \
+    CommentSerializer
+from course.models import Course, CourseCategory, Video, Blog, Comment
 
 
 # Course CRUD apis
 
 class CourseListCreateApiView(ListCreateAPIView):
-    queryset = Course.objects.all()
     serializer_class = CourseSerializer
+
+    def get_queryset(self):
+        search_text = self.request.GET.get('search_text', None)
+        return Course.objects.filter(title__contains=search_text) if search_text else Course.objects.all()
 
 
 class CourseRetrieveUpdateDestroyApiView(RetrieveUpdateDestroyAPIView):
@@ -51,6 +55,19 @@ class BlogListCreateApiView(ListCreateAPIView):
 
 
 class BlogRetrieveUpdateDestroyApiView(RetrieveUpdateDestroyAPIView):
-    queryset = Video.objects.all()
-    serializer_class = VideoSerializer
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+    lookup_field = "id"
+
+
+# Comment CRUD apis
+
+class CommentListCreateApiView(ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+
+class CommentRetrieveUpdateDestroyApiView(RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
     lookup_field = "id"
