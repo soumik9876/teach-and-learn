@@ -5,7 +5,8 @@ from django.urls import include, path
 from teach_and_learn.settings import env, MEDIA_ROOT, MEDIA_URL, STATIC_ROOT, STATIC_URL
 
 api_url_patterns = ([
-    path("accounts/v1/", include("accounts.api.v1.urls"))
+    path("accounts/v1/", include("accounts.api.v1.urls")),
+    path("course/v1/",include("course.api.v1.urls"))
 ])
 
 urlpatterns = [
