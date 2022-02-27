@@ -1,5 +1,9 @@
+from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
+from accounts.models import Student
 from course.api.v1.serializers import CourseSerializer, CourseCategorySerializer, VideoSerializer, BlogSerializer, \
     CommentSerializer
 from course.models import Course, CourseCategory, Video, Blog, Comment
@@ -19,6 +23,17 @@ class CourseRetrieveUpdateDestroyApiView(RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     lookup_field = "id"
+
+
+# noinspection PyMethodMayBeStatic
+class CourseJoinApi(APIView):
+    def get(self, request, course_id):
+        student = Student.objects.get_or_create(user=request.user)[0]
+        Course.objects.get(id=course_id).student.add(student)
+        context = {
+            "result": "Successfully joined"
+        }
+        return Response(context, status=status.HTTP_200_OK)
 
 
 # CourseCategorySerializer CRUD apis
