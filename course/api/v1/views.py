@@ -28,12 +28,20 @@ class CourseRetrieveUpdateDestroyApiView(RetrieveUpdateDestroyAPIView):
 # noinspection PyMethodMayBeStatic
 class CourseJoinApi(APIView):
     def get(self, request, course_id):
-        student = Student.objects.get_or_create(user=request.user)[0]
-        Course.objects.get(id=course_id).student.add(student)
-        context = {
-            "result": "Successfully joined"
-        }
-        return Response(context, status=status.HTTP_200_OK)
+        try:
+            student = Student.objects.get_or_create(user=request.user)[0]
+            Course.objects.get(id=course_id).student.add(student)
+            context = {
+                "result": "Successfully joined"
+            }
+            status_code = status.HTTP_200_OK
+        except (Exception,) as e:
+            context = {
+                "result": "Something went wrong",
+                "error": str(e)
+            }
+            status_code = status.HTTP_400_BAD_REQUEST
+        return Response(context, status=status_code)
 
 
 # CourseCategorySerializer CRUD apis
