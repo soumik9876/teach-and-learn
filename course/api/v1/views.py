@@ -1,7 +1,7 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
-from course.api.v1.serializers import CourseSerializer, CourseCategorySerializer
-from course.models import Course, CourseCategory
+from course.api.v1.serializers import CourseSerializer, CourseCategorySerializer, VideoSerializer
+from course.models import Course, CourseCategory, Video
 
 
 # Course CRUD apis
@@ -28,3 +28,19 @@ class CourseCategoryRetrieveUpdateDestroyApiView(RetrieveUpdateDestroyAPIView):
     queryset = CourseCategory.objects.all()
     serializer_class = CourseCategorySerializer
     lookup_field = "id"
+
+
+# Video CRUD apis
+
+class VideoListCreateApiView(ListCreateAPIView):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
+
+
+class VideoRetrieveUpdateDestroyApiView(RetrieveUpdateDestroyAPIView):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
+    lookup_field = "id"
+
+
+

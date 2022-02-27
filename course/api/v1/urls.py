@@ -1,7 +1,8 @@
 from django.urls import path
 
 from course.api.v1.views import CourseListCreateApiView, CourseRetrieveUpdateDestroyApiView, \
-    CourseCategoryListCreateApiView, CourseCategoryRetrieveUpdateDestroyApiView
+    CourseCategoryListCreateApiView, CourseCategoryRetrieveUpdateDestroyApiView, VideoListCreateApiView, \
+    VideoRetrieveUpdateDestroyApiView
 
 urlpatterns = [
     path("course/", CourseListCreateApiView.as_view(), name="course-list-create"),
@@ -9,5 +10,8 @@ urlpatterns = [
 
     path("course_category/", CourseCategoryListCreateApiView.as_view(), name="course-category-list-create"),
     path("course_category/<int:id>/", CourseCategoryRetrieveUpdateDestroyApiView.as_view(),
-         name="course-category-list-create"),
+         name="course-category-retrieve-update-destroy"),
+
+    path("video/", VideoListCreateApiView.as_view(), name="video-list-create"),
+    path("video/<int:id>/", VideoRetrieveUpdateDestroyApiView.as_view(), name="video-retrieve-update-destroy")
 ]
