@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from course.models import Course, CourseCategory, Video
+from course.models import Course, CourseCategory, Video, Blog
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -18,4 +18,10 @@ class CourseCategorySerializer(serializers.ModelSerializer):
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
+        fields = '__all__'
+
+
+class BlogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blog
         fields = '__all__'
