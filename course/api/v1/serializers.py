@@ -12,3 +12,4 @@ class CourseSerializer(serializers.ModelSerializer):
 class CourseCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseCategory
+        fields = '__all__'
