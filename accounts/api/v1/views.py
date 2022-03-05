@@ -3,10 +3,10 @@ from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.exceptions import ValidationError
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
 
-from accounts.api.v1.serializers import GoogleLoginSerializer, UserSerializer
+from accounts.api.v1.serializers import GoogleLoginSerializer, UserSerializer, StudentSerializer, TeacherSerializer
 from accounts.models import Student, Teacher
 from core.utils import get_logger, get_debug_str
 
@@ -48,3 +48,25 @@ class GoogleLoginView(AbstractBaseLoginView):
     serializer_class = GoogleLoginSerializer
     adapter_class = GoogleOAuth2Adapter
     client_class = OAuth2Client
+
+
+class StudentListCreateAPIView(ListCreateAPIView):
+    serializer_class = StudentSerializer
+    queryset = Student.objects.all()
+
+
+class StudentRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    serializer_class = StudentSerializer
+    queryset = Student.objects.all()
+    lookup_field = 'id'
+
+
+class TeacherListCreateAPIView(ListCreateAPIView):
+    serializer_class = TeacherSerializer
+    queryset = Teacher.objects.all()
+
+
+class TeacherRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    serializer_class = TeacherSerializer
+    queryset = Teacher.objects.all()
+    lookup_field = 'id'

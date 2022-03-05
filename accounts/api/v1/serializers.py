@@ -10,7 +10,7 @@ from django.utils.translation import gettext as _
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
-from accounts.models import User, Teacher
+from accounts.models import User, Teacher, Student
 
 
 class GoogleLoginSerializer(serializers.Serializer):
@@ -148,4 +148,12 @@ class TeacherSerializer(ModelSerializer):
 
     class Meta:
         model = Teacher
+        fields = "__all__"
+
+
+class StudentSerializer(ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = Student
         fields = "__all__"
