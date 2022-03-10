@@ -120,15 +120,33 @@ class GoogleLoginSerializer(serializers.Serializer):
         pass
 
 
+class TeacherSerializer(ModelSerializer):
+    # user = UserSerializer()
+
+    class Meta:
+        model = Teacher
+        fields = "__all__"
+
+
+class StudentSerializer(ModelSerializer):
+    # user = UserSerializer()
+
+    class Meta:
+        model = Student
+        fields = "__all__"
+
+
 # noinspection PyMethodMayBeStatic
 class UserSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField(label=_('Name'))
     picture = serializers.SerializerMethodField(label=_('Photo URL'))
+    teacher = TeacherSerializer()
+    student = StudentSerializer()
 
     class Meta:
         model = User
         fields = [
-            'id', 'username', 'name', 'first_name', 'last_name', 'email', 'picture'
+            'id', 'username', 'name', 'first_name', 'last_name', 'email', 'picture', 'student', 'teacher'
         ]
 
     def get_name(self, obj: User):
@@ -141,19 +159,3 @@ class UserSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         return validated_data
-
-
-class TeacherSerializer(ModelSerializer):
-    user = UserSerializer()
-
-    class Meta:
-        model = Teacher
-        fields = "__all__"
-
-
-class StudentSerializer(ModelSerializer):
-    user = UserSerializer()
-
-    class Meta:
-        model = Student
-        fields = "__all__"
