@@ -12,7 +12,7 @@ class CourseSerializer(serializers.ModelSerializer):
     student = serializers.PrimaryKeyRelatedField(many=True, queryset=Student.objects.all(), write_only=True,
                                                  required=False)
     student_list = serializers.SerializerMethodField(read_only=True)
-    category = serializers.PrimaryKeyRelatedField(queryset=CourseCategory.objects.all(), required=False)
+    # category = serializers.PrimaryKeyRelatedField(queryset=CourseCategory.objects.all(), required=False)
 
     class Meta:
         model = Course

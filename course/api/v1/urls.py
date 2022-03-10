@@ -18,7 +18,7 @@ urlpatterns = [
     path("video/<int:id>/", VideoRetrieveUpdateDestroyApiView.as_view(), name="video-retrieve-update-destroy"),
 
     path("blog/", BlogListCreateApiView.as_view(), name="blog-list-create"),
-    path("video/<int:id>/", BlogRetrieveUpdateDestroyApiView.as_view(), name="blog-retrieve-update-destroy"),
+    path("blog/<int:id>/", BlogRetrieveUpdateDestroyApiView.as_view(), name="blog-retrieve-update-destroy"),
 
     path("comment/", CommentListCreateApiView.as_view(), name="comment-list-create"),
     path("comment/<int:id>/", CommentRetrieveUpdateDestroyApiView.as_view(), name="comment-retrieve-update-destroy"),
