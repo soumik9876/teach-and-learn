@@ -25,6 +25,7 @@ class CourseCategory(BaseModel):
 
 
 class Course(BaseModel):
+    image_link = models.URLField(max_length=255, verbose_name=_("Course Image Link"), null=True, blank=True)
     title = models.CharField(max_length=255, verbose_name=_("Course title"), unique=True)
     description = models.TextField(verbose_name=_("Course description"), blank=True)
     price = models.FloatField(verbose_name=_("Course price"), default=0)
@@ -47,6 +48,7 @@ class Video(BaseModel):
     content_creator = models.ManyToManyField(Teacher, verbose_name=_("Content creators"))
     course = models.ForeignKey(Course, verbose_name=_("Course"), on_delete=models.CASCADE)
     video_file = models.FileField(upload_to=rename_and_save, null=True, blank=True)
+    video_link = models.URLField(max_length=255, verbose_name=_("Course Image Link"), null=True, blank=True)
 
     class Meta:
         verbose_name = _("Video")
