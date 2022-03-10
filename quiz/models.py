@@ -33,7 +33,7 @@ class Question(BaseModel):
 
 class Option(BaseModel):
     option = models.TextField(verbose_name=_("option"))
-    question = models.ForeignKey(Question, verbose_name=_("Question"), on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, verbose_name=_("Question"), on_delete=models.SET_NULL, null=True)
     is_correct = models.BooleanField(verbose_name=_("Is correct"), default=False)
 
     class Meta:
