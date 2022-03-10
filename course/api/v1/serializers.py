@@ -40,6 +40,7 @@ class CourseSerializer(serializers.ModelSerializer):
     # category = serializers.PrimaryKeyRelatedField(queryset=CourseCategory.objects.all(), required=False)
     video_set = VideoSerializer(many=True, read_only=True)
     quiz_set = QuizSerializer(many=True, read_only=True)
+    article_set = BlogSerializer(many=True, read_only=True)
 
     class Meta:
         model = Course
