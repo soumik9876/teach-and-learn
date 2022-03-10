@@ -11,7 +11,6 @@ class CourseSerializer(serializers.ModelSerializer):
         depth = 2
 
 
-
 class CourseCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseCategory
