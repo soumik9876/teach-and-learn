@@ -124,6 +124,8 @@ class GoogleLoginSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField(label=_('Name'))
     picture = serializers.SerializerMethodField(label=_('Photo URL'))
+    student = serializers.PrimaryKeyRelatedField(queryset=Student.objects.all())
+    teacher = serializers.PrimaryKeyRelatedField(queryset=Teacher.objects.all())
 
     class Meta:
         model = User
