@@ -1,12 +1,13 @@
 from rest_framework import serializers
 
+from accounts.models import Teacher, Student
 from course.models import Course, CourseCategory, Video, Blog, Comment
 
 
 # noinspection PyMethodMayBeStatic
 class CourseSerializer(serializers.ModelSerializer):
-    teacher = serializers.PrimaryKeyRelatedField(many=True,queryset=Course.objects.all())
-    student = serializers.PrimaryKeyRelatedField(many=True,queryset=Course.objects.all())
+    teacher = serializers.PrimaryKeyRelatedField(many=True, queryset=Teacher.objects.all())
+    student = serializers.PrimaryKeyRelatedField(many=True, queryset=Student.objects.all())
 
     class Meta:
         model = Course
