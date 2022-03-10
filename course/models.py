@@ -64,6 +64,7 @@ class Blog(BaseModel):
     writers = models.ManyToManyField(Teacher, verbose_name=_("Writers"))
     course = models.ForeignKey(Course, verbose_name=_("Course"), on_delete=models.CASCADE)
     content = models.TextField(verbose_name=_("Blog content"), blank=True)
+    banner_link = models.URLField(max_length=255, verbose_name=_("Banner image link"), blank=True)
 
     class Meta:
         verbose_name = _("Blog")
