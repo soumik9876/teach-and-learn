@@ -7,8 +7,8 @@ from course.models import Course, CourseCategory, Video, Blog, Comment
 # noinspection PyMethodMayBeStatic
 class CourseSerializer(serializers.ModelSerializer):
     teacher = serializers.PrimaryKeyRelatedField(many=True, queryset=Teacher.objects.all())
-    student = serializers.PrimaryKeyRelatedField(many=True, queryset=Student.objects.all())
-    category = serializers.PrimaryKeyRelatedField(queryset=CourseCategory.objects.all())
+    student = serializers.PrimaryKeyRelatedField(many=True, queryset=Student.objects.all(), required=False)
+    category = serializers.PrimaryKeyRelatedField(queryset=CourseCategory.objects.all(), required=False)
 
     class Meta:
         model = Course
