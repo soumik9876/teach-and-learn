@@ -44,6 +44,7 @@ class Course(BaseModel):
 
 class Video(BaseModel):
     title = models.CharField(max_length=255, verbose_name=_("Video title"))
+    description = models.TextField(verbose_name=_("Video description"), blank=True)
     watched_by = models.ManyToManyField(Student, verbose_name="Watched by", blank=True)
     content_creator = models.ManyToManyField(Teacher, verbose_name=_("Content creators"))
     course = models.ForeignKey(Course, verbose_name=_("Course"), on_delete=models.CASCADE)
