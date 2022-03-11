@@ -16,7 +16,7 @@ class CourseListCreateApiView(ListCreateAPIView):
 
     def get_queryset(self):
         search_text = self.request.GET.get('search_text', None)
-        return Course.objects.filter(title__contains=search_text) if search_text else Course.objects.all()
+        return Course.objects.filter(title__icontains=search_text) if search_text else Course.objects.all()
 
 
 class CourseRetrieveUpdateDestroyApiView(RetrieveUpdateDestroyAPIView):
