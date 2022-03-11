@@ -13,7 +13,7 @@ class OptionSerializer(ModelSerializer):
 
 class QuestionSerializer(ModelSerializer):
     options = serializers.SerializerMethodField(read_only=True)
-    quiz = serializers.PrimaryKeyRelatedField(many=True, queryset=Quiz.objects.all())
+    quiz = serializers.PrimaryKeyRelatedField(many=True, queryset=Quiz.objects.all(), required=False)
 
     class Meta:
         model = Question
