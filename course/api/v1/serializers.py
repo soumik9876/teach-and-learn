@@ -5,12 +5,6 @@ from accounts.models import Teacher, Student
 from course.models import Course, CourseCategory, Video, Blog, Comment
 
 
-class CourseCategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CourseCategory
-        fields = '__all__'
-
-
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
@@ -52,3 +46,11 @@ class CourseSerializer(serializers.ModelSerializer):
 
     def get_student_list(self, obj):
         return StudentSerializer(obj.student.all(), many=True).data
+
+
+class CourseCategorySerializer(serializers.ModelSerializer):
+    course_set = CourseSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = CourseCategory
+        fields = '__all__'
