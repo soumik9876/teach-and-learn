@@ -254,7 +254,7 @@ class ProductRedirectView(View):
         request_origin = request.POST.get('value_c', None)
         print(product_id, user_id)
 
-        _status = request.get('status', None)
+        _status = request.GET.get('status', None)
 
         if _status == "success":
             student = Student.objects.get_or_create(user_id=user_id)[0]
