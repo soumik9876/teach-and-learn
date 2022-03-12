@@ -251,12 +251,15 @@ class ProductRedirectView(View):
     def post(self, request):
         product_id = request.POST.get('value_a', None)
         user_id = request.POST.get('value_b', None)
-        request_origin = request.POST.get('value_c',None)
+        request_origin = request.POST.get('value_c', None)
         print(product_id, user_id)
 
-        student = Student.objects.get_or_create(user_id=user_id)[0]
-        print(student)
-        Course.objects.get(id=product_id).student.add(student)
+        _status = request.get('status', None)
+
+        if _status == "success":
+            student = Student.objects.get_or_create(user_id=user_id)[0]
+            print(student)
+            Course.objects.get(id=product_id).student.add(student)
 
         url = f"{request_origin}/course/{product_id}"
         return redirect(url)
