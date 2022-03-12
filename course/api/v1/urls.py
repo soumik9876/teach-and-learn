@@ -3,7 +3,8 @@ from django.urls import path
 from course.api.v1.views import CourseListCreateApiView, CourseRetrieveUpdateDestroyApiView, \
     CourseCategoryListCreateApiView, CourseCategoryRetrieveUpdateDestroyApiView, VideoListCreateApiView, \
     VideoRetrieveUpdateDestroyApiView, BlogListCreateApiView, BlogRetrieveUpdateDestroyApiView, \
-    CommentListCreateApiView, CommentRetrieveUpdateDestroyApiView, CourseJoinApi
+    CommentListCreateApiView, CommentRetrieveUpdateDestroyApiView, CourseJoinApi, SSLCommerzSessionAPI, \
+    IPNVerifyAPIView, ProductRedirectView
 
 urlpatterns = [
     path("course/", CourseListCreateApiView.as_view(), name="course-list-create"),
@@ -22,4 +23,8 @@ urlpatterns = [
 
     path("comment/", CommentListCreateApiView.as_view(), name="comment-list-create"),
     path("comment/<int:id>/", CommentRetrieveUpdateDestroyApiView.as_view(), name="comment-retrieve-update-destroy"),
+
+    path('ssl-commerz-session/', SSLCommerzSessionAPI.as_view(), name="ssl-commerz-session"),
+    path('ipn-verify/', IPNVerifyAPIView.as_view(), name="ipn-verify"),
+    path('product-redirect/', ProductRedirectView.as_view(), name="ipn-verify")
 ]

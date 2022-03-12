@@ -6,6 +6,8 @@ from course.models import Course, CourseCategory, Video, Blog, Comment
 
 
 class VideoSerializer(serializers.ModelSerializer):
+    purchased = serializers.SerializerMethodField()
+
     class Meta:
         model = Video
         fields = '__all__'

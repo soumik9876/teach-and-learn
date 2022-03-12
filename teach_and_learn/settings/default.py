@@ -185,3 +185,10 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 django_heroku.settings(locals())
+
+
+SSL_COMMERZ_STORE_ID = env.str('SSL_COMMERZ_STORE_ID')
+SSL_COMMERZ_STORE_PASS = env.str('SSL_COMMERZ_STORE_PASS')
+SSL_COMMERZ_GATEWAY = env.str('SSL_COMMERZ_GATEWAY')
+SSL_COMMERZ_SANDBOX = env.str('SSL_COMMERZ_SANDBOX')
+HOST_URL = env.str('HOST_URL')
