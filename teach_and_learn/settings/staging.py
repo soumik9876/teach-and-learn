@@ -3,17 +3,17 @@ from .default import *
 import dj_database_url
 
 DEBUG = True
-ALLOWED_HOSTS = ["teach-and-learn-api.herokuapp.com", "0.0.0.0:8000", 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "d6fbeqg7n9s9ot",
-        'USER': "dxwkkduepohfkg",
-        'PASSWORD': 'cd8c3748d8c292c089affbf62864b802e5f6909cadbfb461521bc0aa3fd13032',
-        'HOST': 'ec2-3-228-78-248.compute-1.amazonaws.com',
-        'PORT': "5432",
+        'NAME': env.str('DB_NAME'),
+        'USER': env.str('DB_USER'),
+        'PASSWORD': env.str('DB_PASSWORD'),
+        'HOST': env.str('DB_HOST'),
+        'PORT': env.str('DB_PORT'),
     }
 }
 
