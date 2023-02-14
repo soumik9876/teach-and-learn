@@ -16,7 +16,13 @@ urlpatterns = [
     path('', include('accounts.urls'))
 ]
 
-if env.str('ENV_TYPE') == 'DEVELOPMENT':
+
+def should_debug_toolbar_show() -> bool:
+    env_type = env.str('ENV_TYPE')
+    return env_type == 'DEVELOPMENT' or env_type == ''
+
+
+if should_debug_toolbar_show():
     import debug_toolbar
 
     urlpatterns += static(STATIC_URL, document_root=STATIC_ROOT)
