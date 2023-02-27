@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -52,6 +52,18 @@ class CourseJoinApi(APIView):
             }
             status_code = status.HTTP_400_BAD_REQUEST
         return Response(context, status=status_code)
+
+
+class PersonalCoursesListAPIView(APIView):
+    serializer_class = CourseSerializer
+
+    def get(self, request):
+        created_courses = Course.objects.filter(teacher=request.user.teacher)
+        taken_courses = Course.objects.filter(student=request.user.student)
+        return Response({
+            'createdCourses': CourseSerializer(created_courses).data,
+            'takenCourses': CourseSerializer(taken_courses).data
+        })
 
 
 # CourseCategorySerializer CRUD apis

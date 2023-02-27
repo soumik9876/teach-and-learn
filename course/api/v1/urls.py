@@ -4,12 +4,13 @@ from course.api.v1.views import CourseListCreateApiView, CourseRetrieveUpdateDes
     CourseCategoryListCreateApiView, CourseCategoryRetrieveUpdateDestroyApiView, VideoListCreateApiView, \
     VideoRetrieveUpdateDestroyApiView, BlogListCreateApiView, BlogRetrieveUpdateDestroyApiView, \
     CommentListCreateApiView, CommentRetrieveUpdateDestroyApiView, CourseJoinApi, SSLCommerzSessionAPI, \
-    IPNVerifyAPIView, ProductRedirectView
+    IPNVerifyAPIView, ProductRedirectView, PersonalCoursesListAPIView
 
 urlpatterns = [
     path("course/", CourseListCreateApiView.as_view(), name="course-list-create"),
     path("course/<int:id>/", CourseRetrieveUpdateDestroyApiView.as_view(), name="course-retrieve-update-destroy"),
     path("course/join/<int:course_id>/", CourseJoinApi.as_view(), name="course-join"),
+    path("course/personal/", PersonalCoursesListAPIView.as_view(), name="personal-course"),
 
     path("course_category/", CourseCategoryListCreateApiView.as_view(), name="course-category-list-create"),
     path("course_category/<int:id>/", CourseCategoryRetrieveUpdateDestroyApiView.as_view(),
