@@ -61,8 +61,8 @@ class PersonalCoursesListAPIView(APIView):
         created_courses = Course.objects.filter(teacher=request.user.teacher)
         taken_courses = Course.objects.filter(student=request.user.student)
         return Response({
-            'createdCourses': CourseSerializer(created_courses).data,
-            'takenCourses': CourseSerializer(taken_courses).data
+            'createdCourses': CourseSerializer(created_courses, many=True).data,
+            'takenCourses': CourseSerializer(taken_courses, many=True).data
         })
 
 
