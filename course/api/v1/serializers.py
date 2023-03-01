@@ -50,6 +50,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
 class CourseListCreateSerializer(serializers.ModelSerializer):
     teacher = serializers.PrimaryKeyRelatedField(many=True, queryset=Teacher.objects.all())
+    teacher_list = serializers.SerializerMethodField(read_only=True)
     student = serializers.PrimaryKeyRelatedField(many=True, queryset=Student.objects.all(), write_only=True,
                                                  required=False)
 
@@ -57,9 +58,9 @@ class CourseListCreateSerializer(serializers.ModelSerializer):
         model = Course
         fields = '__all__'
         depth = 2
-        # extra_kwargs = {
-        #
-        # }
+
+    def get_teacher_list(self, obj):
+        return TeacherSerializer(obj.teacher.all(), many=True).data
 
 
 class CourseCategorySerializer(serializers.ModelSerializer):
