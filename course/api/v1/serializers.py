@@ -6,7 +6,6 @@ from course.models import Course, CourseCategory, Video, Blog, Comment
 
 
 class VideoSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Video
         fields = '__all__'
@@ -47,6 +46,20 @@ class CourseSerializer(serializers.ModelSerializer):
 
     def get_student_list(self, obj):
         return StudentSerializer(obj.student.all(), many=True).data
+
+
+class CourseListCreateSerializer(serializers.ModelSerializer):
+    teacher = serializers.PrimaryKeyRelatedField(many=True, queryset=Teacher.objects.all())
+    student = serializers.PrimaryKeyRelatedField(many=True, queryset=Student.objects.all(), write_only=True,
+                                                 required=False)
+
+    class Meta:
+        model = Course
+        fields = '__all__'
+        depth = 2
+        # extra_kwargs = {
+        #
+        # }
 
 
 class CourseCategorySerializer(serializers.ModelSerializer):

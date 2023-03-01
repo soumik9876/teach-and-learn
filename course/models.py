@@ -26,7 +26,7 @@ class CourseCategory(BaseModel):
 
 class Course(BaseModel):
     image_link = models.URLField(max_length=255, verbose_name=_("Course Image Link"), null=True, blank=True)
-    title = models.CharField(max_length=255, verbose_name=_("Course title"), unique=True)
+    title = models.CharField(max_length=255, verbose_name=_("Course title"))
     description = models.TextField(verbose_name=_("Course description"), blank=True)
     price = models.FloatField(verbose_name=_("Course price"), default=0)
     teacher = models.ManyToManyField(Teacher, verbose_name=_("Course teachers"))

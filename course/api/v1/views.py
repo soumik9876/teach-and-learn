@@ -14,7 +14,7 @@ from sslcommerz_lib import SSLCOMMERZ
 
 from accounts.models import Student
 from course.api.v1.serializers import CourseSerializer, CourseCategorySerializer, VideoSerializer, BlogSerializer, \
-    CommentSerializer
+    CommentSerializer, CourseListCreateSerializer
 from course.models import Course, CourseCategory, Video, Blog, Comment
 
 # Course CRUD apis
@@ -22,7 +22,7 @@ from teach_and_learn.settings import SSL_COMMERZ_STORE_ID, SSL_COMMERZ_SANDBOX, 
 
 
 class CourseListCreateApiView(ListCreateAPIView):
-    serializer_class = CourseSerializer
+    serializer_class = CourseListCreateSerializer
 
     def get_queryset(self):
         search_text = self.request.GET.get('search_text', None)
